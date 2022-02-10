@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/client";
-import { connectToDatabase } from "../../../../lib/db";
-import { verifyPassword, hashPassword } from "../../../../lib/auth";
+import { connectToDatabase } from "../../../lib/db";
+import { verifyPassword, hashPassword } from "../../../lib/auth";
 async function handler(req, res) {
   if (req.method !== "PATCH") {
     return;
