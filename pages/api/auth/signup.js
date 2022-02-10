@@ -37,7 +37,7 @@ async function handler(req, res) {
 
   const result = await db.collection("users").insertOne({
     email: email,
-    passsword: hashedPassword,
+    password: hashedPassword,
   });
 
   res.status(201).json({ message: "User is aangemaakt" });
