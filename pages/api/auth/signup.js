@@ -25,6 +25,14 @@ async function handler(req, res) {
 
   const db = client.db();
 
+  const existingUser = await db.collection("users").findOne({ email: email });
+
+  if (existingUser) {
+    res.status(422).json({ message: "user bestaat al" });
+    client.close();
+    return;
+  }
+
   const hashedPassword = await hashPassword(password);
 
   const result = await db.collection("users").insertOne({
@@ -33,6 +41,7 @@ async function handler(req, res) {
   });
 
   res.status(201).json({ message: "User is aangemaakt" });
+  client.close();
 }
 
 export default handler;
