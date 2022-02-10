@@ -6,11 +6,9 @@ import classes from "./user-profile.module.css";
 
 function UserProfile() {
   const [isLoading, setIsLoading] = useState(true);
-  const [loadedSession, setLoadedSession] = useState();
 
   useEffect(() => {
     getSession().then((session) => {
-      setLoadedSession(session);
       if (!session) {
         window.location.href = "/auth";
       } else {
@@ -19,9 +17,7 @@ function UserProfile() {
     });
   }, []);
 
-  const [session, loading] = useSession();
-
-  if (loading) {
+  if (isLoading) {
     return <p className={classes.profile}>Loading</p>;
   }
 
